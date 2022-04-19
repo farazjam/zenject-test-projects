@@ -12,4 +12,7 @@ As the ones that come along are already dense enough to confuse or repel newbies
 - Most basic level hello world in standard unity style and with basic dependency injection
 - This helps distinguish how DI (Dependency Injection) and Binding will change things for us
 
+## Project2: Z2-cube-spawner
+- Demonstrates how to spawn cubes in a standard unity way vs DI's way
+- 
 
