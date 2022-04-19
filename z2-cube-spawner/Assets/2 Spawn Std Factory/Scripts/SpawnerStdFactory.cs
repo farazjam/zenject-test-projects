@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cube.Spawner.Standard
+namespace Cube.Spawner.StandardFactory
 {
-    public class Spawner : MonoBehaviour
+    public class SpawnerStdFactory : MonoBehaviour
     {
-        [SerializeField] GameObject cubePrefab;
-
         void Update()
         {
             if (Input.GetMouseButtonUp(0)) Spawn();
@@ -15,8 +13,8 @@ namespace Cube.Spawner.Standard
 
         void Spawn()
         {
-            GameObject cube = Instantiate(cubePrefab);
-
+            GameObject cube = Factory.Instance.GetNewObject();
+            Destroy(cube, 2f);
         }
     }
 }
