@@ -12,7 +12,7 @@ using Zenject;
 
 namespace Cube.Spawner.DI1
 {
-    public class CubeSpawnerInstaller : MonoInstaller
+    public class SpawnerInstaller : MonoInstaller
     {
         [SerializeField] GameObject cubePrefab;
 
