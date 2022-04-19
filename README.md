@@ -16,6 +16,8 @@ As the ones that come along are already dense enough to confuse or repel newbies
 - Demonstrates how to spawn cubes in a standard unity way vs DI's way
 - In standard way the spawner-script need to have prefab (dependency) and have to do instantiation on it's own
 - This project also uses a simple **Factory** to take the instation-responsibility out of spawn-script, the Factory holds prefab and provides instantated objects when asked to. Better, but I had to write Factory on my own, Factory is monobehavior class, an active gameobject in hierarchy and Factory does have its dependencies
+
 - In DI's way, Zenject's readymade **PlaceholderFactory<T>** is used. It's not a Monobehavior. The flow is that MonoInstaller have prefab (Main root), it binds the said factory with a type. The factory is injected to Spawner which can ask the Factory to spawn when it asks it to. This way the spawner doesn't know which objects are provided to it, there is no need to create a factory - zenject provides it. Installer binds and injects the factory in start to whereever it's needed. Therefore we have 1 single point (root scene context), that have the prefab, injects the factory. Factory and it's type can be changed with just 1 line in Installer without modifying other classes
-  - MemoryPool also provides instantiation and pooling, provided by Zenject. With this, we don't need a factory only pool and use Spawn(), Despawn() methods that are handled by pool's OnSpawned(), OnDespawned(). Until now, it was all runtime instatiaion and no pooling
+  
+- MemoryPool also provides instantiation and pooling, provided by Zenject. With this, we don't need a factory only pool and use Spawn(), Despawn() methods that are handled by pool's OnSpawned(), OnDespawned(). Until now, it was all runtime instatiaion and no pooling
 
