@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e77cd600d7cc04ebaff7ac5db8e530, type: 3}
   m_Name: CubeGameData
   m_EditorClassIdentifier: 
-  Player:
+  player:
     SpawnPositionY: -5
     SwerveSpeed: 10
     SwerveLimitX: 5
+  settings:
+    coinSpawnInterval: {x: 1, y: 5}

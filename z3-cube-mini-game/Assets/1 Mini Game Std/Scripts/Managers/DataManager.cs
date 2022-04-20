@@ -11,7 +11,7 @@ namespace Cube.MiniGame.Systems
     {
         public static DataManager Instance;
         [SerializeField] private CubeGameData _data;
-        public CubeGameData GameData => _data;
+        public CubeGameData Data => _data;
         private const string CurrentLevel = "CurrentLevel";
         private int _level;
         private int _score;

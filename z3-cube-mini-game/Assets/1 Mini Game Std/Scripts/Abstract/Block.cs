@@ -17,7 +17,7 @@ namespace Cube.MiniGame.Abstract
         {
             if (Data == null)
             {
-                Data = DataManager.Instance.GameData;
+                Data = DataManager.Instance.Data;
                 Assert.IsNotNull(Data);
             }
             this.gameObject.SetActive(true);
