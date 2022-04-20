@@ -17,5 +17,6 @@ MonoBehaviour:
     SwerveSpeed: 10
     SwerveLimitX: 5
   coin:
-    SpawnInterval: {x: 2, y: 5}
+    SpawnInterval: {x: 1, y: 3}
     SpawnPositionY: 5
+    SpawnRangeX: 5

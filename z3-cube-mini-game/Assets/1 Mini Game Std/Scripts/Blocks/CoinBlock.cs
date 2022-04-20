@@ -4,6 +4,7 @@ using UnityEngine;
 using Cube.MiniGame.Abstract;
 using Cube.MiniGame.Data;
 using Cube.MiniGame.Systems;
+using Random = UnityEngine.Random;
 
 namespace Cube.MiniGame.Blocks
 {
@@ -13,7 +14,7 @@ namespace Cube.MiniGame.Blocks
         {
             base.Spawn();
             _type = BlockType.Coin;
-            _defaultPosition = new Vector3(0, Data.coin.SpawnPositionY, 0);
+            _defaultPosition = new Vector3(Random.Range(-Data.coin.SpawnRangeX, Data.coin.SpawnRangeX), Data.coin.SpawnPositionY, 0);
             SetPosition(_defaultPosition);
         }
 

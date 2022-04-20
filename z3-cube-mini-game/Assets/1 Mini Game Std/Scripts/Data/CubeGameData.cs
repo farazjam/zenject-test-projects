@@ -22,6 +22,7 @@ namespace Cube.MiniGame.Data
         {
             public Vector2Int SpawnInterval;
             public int SpawnPositionY;
+            public int SpawnRangeX;
         }
     }
 }
