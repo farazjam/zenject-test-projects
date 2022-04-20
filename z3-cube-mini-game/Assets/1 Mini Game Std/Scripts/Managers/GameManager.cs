@@ -34,7 +34,6 @@ namespace Cube.MiniGame.Systems
         public void StopGame() => StopSystems();
         void OnLevelConcluded(LevelConclusion __, int _) => StopGame();
 
-
         private void OnGUI()
         {
             GUI.skin.label.fontSize = 24;

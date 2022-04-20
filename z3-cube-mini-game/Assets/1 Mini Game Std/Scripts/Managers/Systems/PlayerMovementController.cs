@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using Cube.MiniGame.Data;
+using Cube.MiniGame.Blocks;
 using System;
 
 namespace Cube.MiniGame.Systems
@@ -12,7 +13,7 @@ namespace Cube.MiniGame.Systems
     {
         private bool _isActive;
         public bool IsActive => _isActive;
-        [SerializeField] GameObject player;
+        [SerializeField] PlayerBlock playerBlock;
 
         private void OnEnable() 
         { 
@@ -32,13 +33,14 @@ namespace Cube.MiniGame.Systems
             else if (state == SystemState.Clear) ClearSystem();
         }
 
-        void Start() => Assert.IsNotNull(player);
+        void Start() => Assert.IsNotNull(playerBlock);
 
         public void StartSystem()
         {
              if (_isActive) return;
              _isActive = true;
-             Debug.Log("PlayerMovementController.StartSystem");
+            playerBlock.Spawn();
+            Debug.Log("PlayerMovementController.StartSystem");
         }
 
         public void StopSystem()
@@ -50,15 +52,14 @@ namespace Cube.MiniGame.Systems
 
         public void ClearSystem()
         {
-            player.transform.position = Vector3.zero;
+            playerBlock.Despawn();
             Debug.Log("PlayerMovementController.ClearSystem");
         }
 
         void Move(Direction direction)
         {
             if (!_isActive) return;
-            if (direction == Direction.Left) player.transform.position += Vector3.left * Time.deltaTime * 10f;
-            else if (direction == Direction.Right) player.transform.position += Vector3.right * Time.deltaTime * 10f;
+            playerBlock.Move(direction);
         }
     }
 }
