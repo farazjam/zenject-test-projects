@@ -38,7 +38,7 @@ namespace Cube.MiniGame.Systems
         void Start()
         {
             Assert.IsNotNull(coinBlockPrefab);
-            _coinSpawnInterval = DataManager.Instance.Data.settings.coinSpawnInterval;
+            _coinSpawnInterval = DataManager.Instance.Data.coin.SpawnInterval;
         }
 
         public void StartSystem()

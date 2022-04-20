@@ -13,6 +13,10 @@ namespace Cube.MiniGame.Blocks
         {
             base.Spawn();
             _type = BlockType.Coin;
+            _defaultPosition = new Vector3(0, Data.coin.SpawnPositionY, 0);
+            SetPosition(_defaultPosition);
         }
+
+        public override void Despawn() => base.Despawn();
     }
 }

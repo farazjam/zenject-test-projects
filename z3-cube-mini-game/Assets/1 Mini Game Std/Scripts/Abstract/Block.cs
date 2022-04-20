@@ -11,6 +11,8 @@ namespace Cube.MiniGame.Abstract
     {
         protected BlockType _type;
         public BlockType Type => _type;
+        protected Vector3 _defaultPosition;
+        public Vector3 DefaultPosition => _defaultPosition;
         protected CubeGameData Data;
 
         public virtual void Spawn()
@@ -26,7 +28,10 @@ namespace Cube.MiniGame.Abstract
         public virtual void Despawn()
         {
             this.gameObject.SetActive(false);
-            //Destroy(this.gameObject);
+            Destroy(this.gameObject);
         }
+
+        public void SetPosition(Vector3 pos) => transform.localPosition = pos;
+        public void ResetPosition() => SetPosition(DefaultPosition);
     }
 }

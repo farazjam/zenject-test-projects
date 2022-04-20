@@ -13,13 +13,16 @@ namespace Cube.MiniGame.Systems
     {
         private bool _isActive;
         public bool IsActive => _isActive;
+        CubeGameData _data;
         [SerializeField] PlayerBlock playerBlock;
+        Vector3 _position;
 
         private void OnEnable() 
         { 
             GameManager.SystemStateChanged += OnSystemStateChanged;
             InputManager.InputReceived += Move;
         }
+
         private void OnDisable() 
         { 
             GameManager.SystemStateChanged -= OnSystemStateChanged;
@@ -33,7 +36,12 @@ namespace Cube.MiniGame.Systems
             else if (state == SystemState.Clear) ClearSystem();
         }
 
-        void Start() => Assert.IsNotNull(playerBlock);
+        void Start()
+        {
+            _data = DataManager.Instance.Data;
+            Assert.IsNotNull(_data);
+            Assert.IsNotNull(playerBlock);
+        }
 
         public void StartSystem()
         {
@@ -56,10 +64,20 @@ namespace Cube.MiniGame.Systems
             Debug.Log("PlayerMovementController.ClearSystem");
         }
 
-        void Move(Direction direction)
+        public void Move(Direction direction)
         {
             if (!_isActive) return;
-            playerBlock.Move(direction);
+            _position = playerBlock.transform.localPosition;
+            if (direction == Direction.Left) _position += Vector3.left * Time.deltaTime * _data.player.SwerveSpeed;
+            else if (direction == Direction.Right) _position += Vector3.right * Time.deltaTime * _data.player.SwerveSpeed;
+            Clamp();
+            playerBlock.SetPosition(_position);
+        }
+
+        private void Clamp()
+        {
+            if (_position.x < -_data.player.SwerveLimitX) _position = new Vector3(-_data.player.SwerveLimitX, _position.y, _position.z);
+            else if (_position.x > _data.player.SwerveLimitX) _position = new Vector3(_data.player.SwerveLimitX, _position.y, _position.z);
         }
     }
 }

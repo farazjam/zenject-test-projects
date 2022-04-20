@@ -4,33 +4,32 @@ using UnityEngine;
 using Cube.MiniGame.Abstract;
 using Cube.MiniGame.Data;
 using Cube.MiniGame.Systems;
+using System;
 
 namespace Cube.MiniGame.Blocks
 {
     public class PlayerBlock : Block
     {
+        public static event Action<BlockType> BlockTouchedPlayer;
+
         public override void Spawn()
         {
             base.Spawn();
             _type = BlockType.Player;
-            ResetPosition();
+            _defaultPosition = new Vector3(0, Data.player.SpawnPositionY, 0);
+            SetPosition(_defaultPosition);
         }
 
-        void ResetPosition() => transform.localPosition = new Vector3(0, Data.player.SpawnPositionY, 0);
+        // Exception for PlayerBlock, object should not be destroyed
+        public override void Despawn() => this.gameObject.SetActive(false);
 
-        public void Move(Direction direction)
+        private void OnTriggerEnter(Collider other)
         {
-            if (direction == Direction.Left) transform.localPosition += Vector3.left * Time.deltaTime * Data.player.SwerveSpeed;
-            else if (direction == Direction.Right) transform.localPosition += Vector3.right * Time.deltaTime * Data.player.SwerveSpeed;
-            Clamp();
-        }
-
-        private void Clamp()
-        {
-            Vector3 pos = transform.localPosition;
-            if (pos.x < -Data.player.SwerveLimitX) pos = new Vector3(-Data.player.SwerveLimitX, pos.y, pos.z);
-            else if (pos.x > Data.player.SwerveLimitX) pos = new Vector3(Data.player.SwerveLimitX, pos.y, pos.z);
-            transform.localPosition = pos;
+            if (other.TryGetComponent(out CoinBlock coinBlock))
+            {
+                BlockTouchedPlayer?.Invoke(BlockType.Coin);
+                coinBlock.Despawn();
+            }
         }
     }
 }

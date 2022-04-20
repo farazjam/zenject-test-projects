@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using System;
 using Cube.MiniGame.Data;
-using UnityEngine.Assertions;
+using Cube.MiniGame.Blocks;
 
 namespace Cube.MiniGame.Systems
 {
@@ -18,28 +19,36 @@ namespace Cube.MiniGame.Systems
 
 
         public void Awake() => Instance = this;
+        private void OnEnable() => PlayerBlock.BlockTouchedPlayer += OnBlockTouchedPlayer;
+        private void OnDisable() => PlayerBlock.BlockTouchedPlayer += OnBlockTouchedPlayer;
         public void Start()
         {
             Assert.IsNotNull(DataManager.Instance);
             _data = DataManager.Instance;
         }
 
-        /*public void AddScore()
+        public void AddScore()
         {
             _data.Score++;
             UpdateScore();
-            if (_data.Score >= _data.GameData.maxFoodPerLevel)
+            /*if (_data.Score >= _data.GameData.maxFoodPerLevel)
             {
                 _data.Level++;
                 LevelComplete();
-            }
-        }*/
+            }*/
+        }
 
         public void Reset()
         {
             _data.Score = 0;
             UpdateScore();
             UpdateLevel();
+        }
+
+        private void OnBlockTouchedPlayer(BlockType type)
+        {
+            if (type == BlockType.Coin) AddScore();
+            //else if (type == BlockType.Hurdle) ;//Gameover
         }
 
         private void UpdateScore() => ScoreUpdate?.Invoke(_data.Score);

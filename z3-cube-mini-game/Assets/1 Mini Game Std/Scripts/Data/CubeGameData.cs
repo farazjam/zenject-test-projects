@@ -6,11 +6,11 @@ namespace Cube.MiniGame.Data
     [CreateAssetMenu(fileName = "CubeGameData", menuName = "CubeGame/CubeGameData")]
     public class CubeGameData : ScriptableObject
     {
-        public PlayerData player;
-        public GameSettings settings;
+        public Player player;
+        public Coin coin;
 
         [Serializable]
-        public class PlayerData
+        public class Player
         {
             public int SpawnPositionY;
             public int SwerveSpeed;
@@ -18,9 +18,10 @@ namespace Cube.MiniGame.Data
         }
 
         [Serializable]
-        public class GameSettings
+        public class Coin
         {
-            public Vector2Int coinSpawnInterval;
+            public Vector2Int SpawnInterval;
+            public int SpawnPositionY;
         }
     }
 }
