@@ -34,6 +34,7 @@ namespace Cube.MiniGame.Blocks
             {
                 BlockTouchedPlayer?.Invoke(BlockType.Hurdle);
                 hurdleBlock.Despawn();
+                Despawn();
             }
         }
     }

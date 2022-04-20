@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CubeGameData
   m_EditorClassIdentifier: 
   game:
-    ScorePerLevel: 5
+    MaxCoinsPerLevel: 5
   player:
     SpawnPositionY: -5
     SwerveSpeed: 10

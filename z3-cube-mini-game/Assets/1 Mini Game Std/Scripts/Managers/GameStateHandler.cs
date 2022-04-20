@@ -17,7 +17,6 @@ namespace Cube.MiniGame.Systems
         public static event Action<int> ScoreUpdate;
         public static event Action<int> LevelUpdate;
 
-
         public void Awake() => Instance = this;
         private void OnEnable() => PlayerBlock.BlockTouchedPlayer += OnBlockTouchedPlayer;
         private void OnDisable() => PlayerBlock.BlockTouchedPlayer += OnBlockTouchedPlayer;
@@ -31,11 +30,11 @@ namespace Cube.MiniGame.Systems
         {
             _data.Score++;
             UpdateScore();
-            /*if (_data.Score >= _data.GameData.maxFoodPerLevel)
+            if (_data.Score >= _data.Data.game.MaxCoinsPerLevel)
             {
                 _data.Level++;
                 LevelComplete();
-            }*/
+            }
         }
 
         public void Reset()
@@ -48,15 +47,13 @@ namespace Cube.MiniGame.Systems
         private void OnBlockTouchedPlayer(BlockType type)
         {
             if (type == BlockType.Coin) AddScore();
-            //else if (type == BlockType.Hurdle) ;//Gameover
+            else if (type == BlockType.Hurdle) LevelFailed();
         }
 
         private void UpdateScore() => ScoreUpdate?.Invoke(_data.Score);
         private void UpdateLevel() => LevelUpdate?.Invoke(_data.Level);
-
-        public void LevelComplete() => LevelConclude?.Invoke(LevelConclusion.Completed, -1/*_data.Level*/);
-
-        public void LevelFailed() => LevelConclude?.Invoke(LevelConclusion.Failed, -1/*_data.Level*/);
+        public void LevelComplete() => LevelConclude?.Invoke(LevelConclusion.Completed, _data.Level);
+        public void LevelFailed() => LevelConclude?.Invoke(LevelConclusion.Failed, _data.Level);
 
         
     }

@@ -14,7 +14,7 @@ namespace Cube.MiniGame.Data
         [Serializable]
         public class Game
         {
-            public int ScorePerLevel;
+            public int MaxCoinsPerLevel;
         }
 
         [Serializable]
