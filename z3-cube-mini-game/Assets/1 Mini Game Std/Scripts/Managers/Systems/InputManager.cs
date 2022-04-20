@@ -6,16 +6,12 @@ using Cube.MiniGame.Data;
 
 namespace Cube.MiniGame.Systems
 {
-    public class InputManager : MonoBehaviour//, IGameSystem
+    public class InputManager : MonoBehaviour, IGameSystem
     {
         public static InputManager Instance;
         private Direction _direction;
         public static event Action<Direction> InputReceived;
         private bool _isActive;
-
-        private void Awake() => Instance = this;
-        public bool IsActive => _isActive;
-
         public Direction Direction
         {
             get { return _direction; }
@@ -26,9 +22,16 @@ namespace Cube.MiniGame.Systems
             }
         }
 
-        void Start() 
+        private void Awake() => Instance = this;
+        private void OnEnable() => GameManager.SystemStateChanged += OnSystemStateChanged;
+        private void OnDisable() => GameManager.SystemStateChanged -= OnSystemStateChanged;
+        public bool IsActive => _isActive;
+
+        public void OnSystemStateChanged(SystemState state)
         {
-            _isActive = true;
+            if (state == SystemState.Start) StartSystem();
+            else if (state == SystemState.Stop) StopSystem();
+            else if (state == SystemState.Clear) ClearSystem();
         }
 
         void Update()
@@ -44,7 +47,7 @@ namespace Cube.MiniGame.Systems
             }
         }
 
-        /*public void StartSystem()
+        public void StartSystem()
         {
             if (_isActive) return;
             _isActive = true;
@@ -60,11 +63,8 @@ namespace Cube.MiniGame.Systems
 
         public void ClearSystem()
         {
-            _newDirection = Direction.None;
-            Direction = _newDirection;
-            _currentDirection = Direction.Up;
-            _builtUpTime = 0;
+            Direction = Direction.None;
             Debug.Log("InputManager.ClearSystem");
-        }*/
+        }
     }
 }
