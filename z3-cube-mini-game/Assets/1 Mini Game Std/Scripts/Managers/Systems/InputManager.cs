@@ -8,10 +8,10 @@ namespace Cube.MiniGame.Systems
 {
     public class InputManager : MonoBehaviour, IGameSystem
     {
-        public static InputManager Instance;
         private Direction _direction;
         public static event Action<Direction> InputReceived;
         private bool _isActive;
+        public bool IsActive => _isActive;
         public Direction Direction
         {
             get { return _direction; }
@@ -22,10 +22,9 @@ namespace Cube.MiniGame.Systems
             }
         }
 
-        private void Awake() => Instance = this;
         private void OnEnable() => GameManager.SystemStateChanged += OnSystemStateChanged;
         private void OnDisable() => GameManager.SystemStateChanged -= OnSystemStateChanged;
-        public bool IsActive => _isActive;
+        
 
         public void OnSystemStateChanged(SystemState state)
         {

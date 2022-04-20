@@ -41,7 +41,7 @@ namespace Cube.MiniGame.Systems
             GUI.skin.button.fontSize = 24;
             if (GUILayout.Button("Start Game")) StartGame();
             if (GUILayout.Button("End Game")) StopGame();
-            GUILayout.Label("Last Direction = " + InputManager.Instance.Direction);
+            GUILayout.Label("Last Direction = " + FindObjectOfType<InputManager>().Direction); // Temp, sorry
             //GUILayout.Label("Score = " + GameStateHandler.Instance.Score);
             //GUILayout.Label("Occupancy Dict = " + OccupancyHandler.Instance._occupancy.Count);
             //GUILayout.Label("Food Dict = " + FoodManager.Instance._spawnedBlocks.Count);
