@@ -4,27 +4,27 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using Cube.MiniGame.Data;
 using Cube.MiniGame.Blocks;
+using Cube.MiniGame.Abstract;
 using System;
 
 namespace Cube.MiniGame.Systems
 {
     [DefaultExecutionOrder((int)ExecutionOrder.System)]
-    public class PlayerMovementController : MonoBehaviour, IGameSystem
+    public class SwerveMovement : MonoBehaviour, IGameSystem
     {
         private bool _isActive;
         public bool IsActive => _isActive;
         CubeGameData _data;
-        [SerializeField] PlayerBlock playerBlock;
+        [SerializeField] Block block;
         Vector3 _position;
 
-        private void OnEnable() 
-        { 
+        private void OnEnable()
+        {
             GameManager.SystemStateChanged += OnSystemStateChanged;
             InputManager.InputReceived += Move;
         }
-
-        private void OnDisable() 
-        { 
+        private void OnDisable()
+        {
             GameManager.SystemStateChanged -= OnSystemStateChanged;
             InputManager.InputReceived -= Move;
         }
@@ -40,38 +40,36 @@ namespace Cube.MiniGame.Systems
         {
             _data = DataManager.Instance.Data;
             Assert.IsNotNull(_data);
-            Assert.IsNotNull(playerBlock);
+            Assert.IsNotNull(block);
         }
 
         public void StartSystem()
         {
-             if (_isActive) return;
-             _isActive = true;
-            playerBlock.Spawn();
-            Debug.Log("PlayerMovementController.StartSystem");
+            if (_isActive) return;
+            _isActive = true;
+            Debug.Log("SwerveMovement.StartSystem");
         }
 
         public void StopSystem()
         {
             if (!_isActive) return;
             _isActive = false;
-            Debug.Log("PlayerMovementController.StopSystem");
+            Debug.Log("SwerveMovement.StopSystem");
         }
 
         public void ClearSystem()
         {
-            playerBlock.Despawn();
-            Debug.Log("PlayerMovementController.ClearSystem");
+            Debug.Log("SwerveMovement.ClearSystem");
         }
 
         public void Move(Direction direction)
         {
             if (!_isActive) return;
-            _position = playerBlock.transform.localPosition;
+            _position = block.transform.localPosition;
             if (direction == Direction.Left) _position += Vector3.left * Time.deltaTime * _data.player.SwerveSpeed;
             else if (direction == Direction.Right) _position += Vector3.right * Time.deltaTime * _data.player.SwerveSpeed;
             Clamp();
-            playerBlock.SetPosition(_position);
+            block.SetPosition(_position);
         }
 
         private void Clamp()
