@@ -38,20 +38,20 @@ namespace Cube.MiniGame.Systems
         {
              if (_isActive) return;
              _isActive = true;
-             Debug.Log("SnakeMovementController.StartSystem");
+             Debug.Log("PlayerMovementController.StartSystem");
         }
 
         public void StopSystem()
         {
             if (!_isActive) return;
             _isActive = false;
-            Debug.Log("SnakeMovementController.StopSystem");
+            Debug.Log("PlayerMovementController.StopSystem");
         }
 
         public void ClearSystem()
         {
             player.transform.position = Vector3.zero;
-            Debug.Log("SnakeMovementController.ClearSystem");
+            Debug.Log("PlayerMovementController.ClearSystem");
         }
 
         void Move(Direction direction)
