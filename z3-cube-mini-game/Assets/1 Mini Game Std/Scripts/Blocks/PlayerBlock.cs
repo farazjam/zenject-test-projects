@@ -9,11 +9,10 @@ namespace Cube.MiniGame.Blocks
 {
     public class PlayerBlock : Block
     {
-        private void Awake() => _type = BlockType.Player;
-
         public override void Spawn()
         {
             base.Spawn();
+            _type = BlockType.Player;
             ResetPosition();
         }
 
@@ -22,12 +21,21 @@ namespace Cube.MiniGame.Blocks
             base.Despawn();
         }
 
-        void ResetPosition() => transform.localPosition = new Vector3(0, DataManager.Instance.GameData.playerSpawnPositionY, 0);
+        void ResetPosition() => transform.localPosition = new Vector3(0, Data.Player.SpawnPositionY, 0);
 
         public void Move(Direction direction)
         {
-            if (direction == Direction.Left) transform.localPosition += Vector3.left * Time.deltaTime * DataManager.Instance.GameData.playerMoveSpeed;
-            else if (direction == Direction.Right) transform.localPosition += Vector3.right * Time.deltaTime * DataManager.Instance.GameData.playerMoveSpeed;
+            if (direction == Direction.Left) transform.localPosition += Vector3.left * Time.deltaTime * Data.Player.SwerveSpeed;
+            else if (direction == Direction.Right) transform.localPosition += Vector3.right * Time.deltaTime * Data.Player.SwerveSpeed;
+            Clamp();
+        }
+
+        private void Clamp()
+        {
+            Vector3 pos = transform.localPosition;
+            if (pos.x < -Data.Player.SwerveLimitX) pos = new Vector3(-Data.Player.SwerveLimitX, pos.y, pos.z);
+            else if (pos.x > Data.Player.SwerveLimitX) pos = new Vector3(Data.Player.SwerveLimitX, pos.y, pos.z);
+            transform.localPosition = pos;
         }
     }
 }
