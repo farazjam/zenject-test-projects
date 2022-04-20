@@ -34,17 +34,17 @@ namespace Cube.MiniGame.Systems
         public void StopGame() => StopSystems();
         void OnLevelConcluded(LevelConclusion __, int _) => StopGame();
 
-        private void OnGUI()
+        /*private void OnGUI()
         {
-            GUI.skin.label.fontSize = 24;
+            *//*GUI.skin.label.fontSize = 24;
             GUI.skin.button.fontSize = 24;
             if (GUILayout.Button("Start Game")) StartGame();
             if (GUILayout.Button("End Game")) StopGame();
-            GUILayout.Label("Last Direction = " + FindObjectOfType<InputManager>().Direction); // Temp, sorry
+            GUILayout.Label("Last Direction = " + FindObjectOfType<InputManager>().Direction);*//* // Temp, sorry
             //GUILayout.Label("Score = " + GameStateHandler.Instance.Score);
             //GUILayout.Label("Occupancy Dict = " + OccupancyHandler.Instance._occupancy.Count);
             //GUILayout.Label("Food Dict = " + FoodManager.Instance._spawnedBlocks.Count);
             //GUILayout.Label("Hurdle Dict = " + HurdleManager.Instance._spawnedBlocks.Count);
-        }
+        }*/
     }
 }

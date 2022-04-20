@@ -28,11 +28,15 @@ namespace Cube.MiniGame.Views
         private void OnEnable()
         {
             GameManager.SystemStateChanged += OnSystemStateChanged;
+            GameStateHandler.LevelUpdate += OnLevelUpdated;
+            GameStateHandler.ScoreUpdate += OnScoreUpdated;
         }
 
         private void OnDisable()
         {
             GameManager.SystemStateChanged -= OnSystemStateChanged;
+            GameStateHandler.LevelUpdate -= OnLevelUpdated;
+            GameStateHandler.ScoreUpdate -= OnScoreUpdated;
         }
 
         public void OnSystemStateChanged(SystemState state)
