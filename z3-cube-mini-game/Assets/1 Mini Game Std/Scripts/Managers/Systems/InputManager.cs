@@ -12,7 +12,6 @@ namespace Cube.MiniGame.Systems
         private Direction _direction;
         public static event Action<Direction> InputReceived;
         private bool _isActive;
-        public GameObject player;
 
         private void Awake() => Instance = this;
         public bool IsActive => _isActive;
