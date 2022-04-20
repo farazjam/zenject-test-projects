@@ -30,6 +30,11 @@ namespace Cube.MiniGame.Blocks
                 BlockTouchedPlayer?.Invoke(BlockType.Coin);
                 coinBlock.Despawn();
             }
+            else if (other.TryGetComponent(out HurdleBlock hurdleBlock))
+            {
+                BlockTouchedPlayer?.Invoke(BlockType.Hurdle);
+                hurdleBlock.Despawn();
+            }
         }
     }
 }

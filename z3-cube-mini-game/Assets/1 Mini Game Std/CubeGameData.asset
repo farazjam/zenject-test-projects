@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e77cd600d7cc04ebaff7ac5db8e530, type: 3}
   m_Name: CubeGameData
   m_EditorClassIdentifier: 
+  game:
+    ScorePerLevel: 5
   player:
     SpawnPositionY: -5
     SwerveSpeed: 10
@@ -20,3 +22,8 @@ MonoBehaviour:
     SpawnInterval: {x: 1, y: 3}
     SpawnPositionY: 5
     SpawnRangeX: 5
+    ScorePerCoin: 1
+  hurdle:
+    SpawnInterval: {x: 2, y: 5}
+    SpawnPositionY: 5
+    SpawnRangeX: 4
