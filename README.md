@@ -3,10 +3,11 @@ Example Projects using Zenject to have more clarity and understanding.
 As the ones that come along are already dense enough to confuse or repel newbies
 
 ## Installation
+- Make sure your OS [allows long file names](https://gearupwindows.com/resolved-destination-path-too-long-when-moving-copying-a-file/) in Windows it's off by default
 - Make an empty unity project, setup scripting backend to IL2CPP and .Net 4.0
-- Do not create any script, try to import [Extenject from Asset store](https://assetstore.unity.com/packages/tools/utilities/extenject-dependency-injection-ioc-157735) first and build it's assemblies
-- Edit Tests assembly in Visual Studio may not load, feel free to delete it
-- Now you may create your own scripts and use Zenject source files
+- Before creating any of your own scripts, try to import [Extenject from Asset store](https://assetstore.unity.com/packages/tools/utilities/extenject-dependency-injection-ioc-157735) first in an empty project first and let it build it's assemblies first
+- See example projects and their source code if they are loaded correctly in Visual studio. Specially check game installer(s)
+- Once all the zenject assemblies are loaded correctly and you can see the base classes working fine, you may proceed creating your own classes
 
 ## Project1: Z1-hello-world
 - Most basic level hello world in standard unity style and with basic dependency injection
