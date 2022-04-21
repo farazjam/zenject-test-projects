@@ -9,26 +9,31 @@ namespace Cube.MiniGame.Systems
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance;
+        private SystemState _state;
         public static event Action<SystemState> SystemStateChanged;
 
         private void Awake() => Instance = this;
         private void OnEnable() => GameStateHandler.LevelConclude += OnLevelConcluded;
         private void OnDisable() => GameStateHandler.LevelConclude -= OnLevelConcluded;
+        public SystemState State
+        {
+            get { return _state; }
+            private set
+            {
+                if (_state == value) return;
+                _state = value;
+                SystemStateChanged?.Invoke(_state);
+                Debug.Log($"--- SystemState :{_state} ---");
+            }
+        }
 
         private void StartSystems()
         {
-            Debug.Log("--- Clear Systems ---");
-            SystemStateChanged?.Invoke(SystemState.Clear);
-            GameStateHandler.Instance.Reset();
-            Debug.Log("--- Start Systems ---");
-            SystemStateChanged?.Invoke(SystemState.Start);
+            State = SystemState.Clear;
+            State = SystemState.Start;
         }
 
-        public void StopSystems()
-        {
-            Debug.Log("--- Stop Systems ---");
-            SystemStateChanged?.Invoke(SystemState.Stop);
-        }
+        private void StopSystems() => State = SystemState.Stop;
 
         public void StartGame() => StartSystems();
         public void StopGame() => StopSystems();

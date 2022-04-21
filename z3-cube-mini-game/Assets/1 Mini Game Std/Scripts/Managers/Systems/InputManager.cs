@@ -31,6 +31,7 @@ namespace Cube.MiniGame.Systems
             if (state == SystemState.Start) StartSystem();
             else if (state == SystemState.Stop) StopSystem();
             else if (state == SystemState.Clear) ClearSystem();
+            Debug.Log($"{gameObject.name} System :{state}");
         }
 
         void Update()
@@ -50,20 +51,14 @@ namespace Cube.MiniGame.Systems
         {
             if (_isActive) return;
             _isActive = true;
-            Debug.Log("InputManager.StartSystem");
         }
 
         public void StopSystem()
         {
             if (!_isActive) return;
             _isActive = false;
-            Debug.Log("InputManager.StopSystem");
         }
 
-        public void ClearSystem()
-        {
-            Direction = Direction.None;
-            Debug.Log("InputManager.ClearSystem");
-        }
+        public void ClearSystem() => Direction = Direction.None;
     }
 }

@@ -24,6 +24,7 @@ namespace Cube.MiniGame.Systems
             if (state == SystemState.Start) StartSystem();
             else if (state == SystemState.Stop) StopSystem();
             else if (state == SystemState.Clear) ClearSystem();
+            Debug.Log($"{gameObject.name} System :{state}");
         }
 
         void Start()
@@ -38,20 +39,14 @@ namespace Cube.MiniGame.Systems
              if (_isActive) return;
              _isActive = true;
             playerBlock.Spawn();
-            Debug.Log("PlayerController.StartSystem");
         }
 
         public void StopSystem()
         {
             if (!_isActive) return;
             _isActive = false;
-            Debug.Log("PlayerController.StopSystem");
         }
 
-        public void ClearSystem()
-        {
-            playerBlock.Despawn();
-            Debug.Log("PlayerController.ClearSystem");
-        }
+        public void ClearSystem() => playerBlock.Despawn();
     }
 }

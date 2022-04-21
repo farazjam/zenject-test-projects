@@ -19,11 +19,11 @@ MonoBehaviour:
     SwerveSpeed: 10
     SwerveLimitX: 5
   coin:
-    SpawnInterval: {x: 1, y: 3}
+    SpawnInterval: {x: 3, y: 5}
     SpawnPositionY: 5
     SpawnRangeX: 5
     ScorePerCoin: 1
   hurdle:
-    SpawnInterval: {x: 2, y: 5}
+    SpawnInterval: {x: 5, y: 10}
     SpawnPositionY: 5
-    SpawnRangeX: 4
+    SpawnRangeX: 5

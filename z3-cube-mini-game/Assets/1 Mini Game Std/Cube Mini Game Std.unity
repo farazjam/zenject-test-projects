@@ -226,7 +226,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: '-'
 --- !u!222 &97594445
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -496,7 +496,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: '-'
 --- !u!222 &506508760
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2076,6 +2076,10 @@ PrefabInstance:
     - target: {fileID: 3491656900505161969, guid: fb463d32fdb372d469fa8f2504751f8d, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3491656900505161969, guid: fb463d32fdb372d469fa8f2504751f8d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb463d32fdb372d469fa8f2504751f8d, type: 3}

@@ -33,6 +33,7 @@ namespace Cube.MiniGame.Systems
             if (state == SystemState.Start) StartSystem();
             else if (state == SystemState.Stop) StopSystem();
             else if (state == SystemState.Clear) ClearSystem();
+            Debug.Log($"{gameObject.name} System :{state}");
         }
 
         void Start()
@@ -46,7 +47,6 @@ namespace Cube.MiniGame.Systems
             if (_isActive) return;
             _isActive = true;
             StartCoroutine(StartGeneration());
-            Debug.Log("CoinGenerator.StartSystem");
         }
 
         public void StopSystem()
@@ -54,7 +54,6 @@ namespace Cube.MiniGame.Systems
             if (!_isActive) return;
             _isActive = false;
             StopCoroutine(StartGeneration());
-            Debug.Log("CoinGenerator.StopSystem");
         }
 
         public void ClearSystem()
@@ -63,7 +62,6 @@ namespace Cube.MiniGame.Systems
             Dictionary<Vector2Int, FoodBlock>.KeyCollection keys = _spawnedBlocks.Keys;
             foreach (Vector2Int pos in keys) _spawnedBlocks[pos].Despawn();
             _spawnedBlocks.Clear();*/
-            Debug.Log("CoinGenerator.ClearSystem");
         }
 
         IEnumerator StartGeneration()

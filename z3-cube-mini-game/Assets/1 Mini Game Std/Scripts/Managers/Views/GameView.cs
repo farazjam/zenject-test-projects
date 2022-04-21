@@ -27,7 +27,6 @@ namespace Cube.MiniGame.Views
 
         private void OnEnable()
         {
-            GameManager.SystemStateChanged += OnSystemStateChanged;
             GameStateHandler.LevelUpdate += OnLevelUpdated;
             GameStateHandler.ScoreUpdate += OnScoreUpdated;
             GameStateHandler.LevelConclude += OnLevelConcluded;
@@ -35,20 +34,13 @@ namespace Cube.MiniGame.Views
 
         private void OnDisable()
         {
-            GameManager.SystemStateChanged -= OnSystemStateChanged;
             GameStateHandler.LevelUpdate -= OnLevelUpdated;
             GameStateHandler.ScoreUpdate -= OnScoreUpdated;
             GameStateHandler.LevelConclude -= OnLevelConcluded;
         }
 
-        public void OnSystemStateChanged(SystemState state)
-        {
-            if (state == SystemState.Clear) Clear();
-        }
-
         void OnLevelUpdated(int level) => textLevel.text = $"Level = {level}";
         void OnScoreUpdated(int score) => textScore.text = $"Score = {score}";
         void OnLevelConcluded(LevelConclusion levelConclusion, int level) => textLevel.text = $"Level {level} {levelConclusion}";
-        void Clear() => textLevel.text = textScore.text = "";
     }
 }
