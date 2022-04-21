@@ -5,7 +5,7 @@ As the ones that come along are already dense enough to confuse or repel newbies
 ## Installation
 - Make sure your OS [allows long file names](https://gearupwindows.com/resolved-destination-path-too-long-when-moving-copying-a-file/) in Windows it's off by default. Without enabling it, some of Zenject's files may not be copied and it won't work
 - Make an empty unity project, setup scripting backend to IL2CPP and .Net 4.0
-- Before creating any of your own scripts, try to import [Extenject from Asset store](https://assetstore.unity.com/packages/tools/utilities/extenject-dependency-injection-ioc-157735) first in an empty project first and let it build it's assemblies first
+- Before creating any of your own scripts, try to import [Extenject from Asset store](https://assetstore.unity.com/packages/tools/utilities/extenject-dependency-injection-ioc-157735) first in an empty project and let it build it's assemblies
 - See example projects and their source code if they are loaded correctly in Visual studio. Specially check game installer(s)
 - Once all the zenject assemblies are loaded correctly and you can see the base classes working fine, you may proceed creating your own classes
 
