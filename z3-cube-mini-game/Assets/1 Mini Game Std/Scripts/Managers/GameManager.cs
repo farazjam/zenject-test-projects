@@ -34,7 +34,6 @@ namespace Cube.MiniGame.Systems
         }
 
         private void StopSystems() => State = SystemState.Stop;
-
         public void StartGame() => StartSystems();
         public void StopGame() => StopSystems();
         void OnLevelConcluded(LevelConclusion __, int _) => StopGame();
