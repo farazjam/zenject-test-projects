@@ -13,6 +13,7 @@ namespace Cube.MiniGame.Systems
         private DataManager _data;
         private bool _isActive;
         public bool IsActive => _isActive;
+        private GameState _state;
         public static event Action<LevelConclusion, int> LevelConclude;
         public static event Action<int> ScoreUpdate;
         public static event Action<int> LevelUpdate;
@@ -47,12 +48,14 @@ namespace Cube.MiniGame.Systems
         {
             if (_isActive) return;
             _isActive = true;
+            _state = GameState.Gameplay;
         }
 
         public void StopSystem()
         {
             if (!_isActive) return;
             _isActive = false;
+            _state = GameState.Gameover;
         }
 
         public void ClearSystem() => Reset();
@@ -62,6 +65,7 @@ namespace Cube.MiniGame.Systems
             _data.Score = 0;
             UpdateScore();
             UpdateLevel();
+            _state = GameState.Idle;
         }
 
         private void OnBlockTouchedPlayer(BlockType type)

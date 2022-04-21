@@ -18,6 +18,13 @@ namespace Cube.MiniGame.Data
         Clear
     }
 
+    public enum GameState
+    {
+        Idle,
+        Gameplay,
+        Gameover
+    }
+
     public enum LevelConclusion
     {
         Completed,

@@ -23,6 +23,7 @@ namespace Cube.MiniGame.Systems
             GameManager.SystemStateChanged += OnSystemStateChanged;
             InputManager.InputReceived += Move;
         }
+
         private void OnDisable()
         {
             GameManager.SystemStateChanged -= OnSystemStateChanged;

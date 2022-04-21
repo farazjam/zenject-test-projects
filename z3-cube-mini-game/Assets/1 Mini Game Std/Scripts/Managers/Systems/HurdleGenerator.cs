@@ -56,13 +56,7 @@ namespace Cube.MiniGame.Systems
             StopCoroutine(StartGeneration());
         }
 
-        public void ClearSystem()
-        {
-           /* if (_spawnedBlocks.Count <= 0) return;
-            Dictionary<Vector2Int, FoodBlock>.KeyCollection keys = _spawnedBlocks.Keys;
-            foreach (Vector2Int pos in keys) _spawnedBlocks[pos].Despawn();
-            _spawnedBlocks.Clear();*/
-        }
+        public void ClearSystem() { }
 
         IEnumerator StartGeneration()
         {
@@ -70,20 +64,15 @@ namespace Cube.MiniGame.Systems
             while (_isActive)
             {
                 yield return new WaitForSeconds(Random.Range(_hurdleSpawnInterval.x, _hurdleSpawnInterval.y));
-                //var position = Map.Instance.GetRandomCoordinate();
-                SpawnBlock(Vector3.zero);
+                SpawnBlock();
             }
         }
 
-        void SpawnBlock(Vector3 position)
+        void SpawnBlock()
         {
             if (!_isActive) return;
-            var block = Instantiate(hurdleBlockPrefab) as HurdleBlock;
-            block.transform.parent = transform;
-            block.transform.localPosition = position;//Map.Instance.ToWorldPosition(position);
-            //_spawnedBlocks.Add(position, block);
+            var block = Instantiate(hurdleBlockPrefab, transform) as HurdleBlock;
             block.Spawn();
-            //_occupancyHandler.Occupy(position, block.Type);
         }
     }
 }

@@ -25,7 +25,6 @@ namespace Cube.MiniGame.Systems
         private void OnEnable() => GameManager.SystemStateChanged += OnSystemStateChanged;
         private void OnDisable() => GameManager.SystemStateChanged -= OnSystemStateChanged;
         
-
         public void OnSystemStateChanged(SystemState state)
         {
             if (state == SystemState.Start) StartSystem();
