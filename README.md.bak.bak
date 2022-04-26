@@ -9,13 +9,11 @@
 - Once zenject files are copied, make a solution build and ensure all assemblies are building correctly. Check sample games and it's installers if they are loaded correctly before using
 
 ## Project1: Z1-hello-world
-> Checkout consol for the output
 - Most basic level hello world in standard unity style and with basic dependency injection
 - This helps distinguish how DI (Dependency Injection) and Binding will change things for us
 - Standard and DI's version both exists for comparison/understanding
 
 ## Project2: Z2-cube-spawner
-> Usage: Click on screen to spawn cubes
 - Demonstrates how to spawn cubes in a standard unity way vs DI's way
 - In standard way the spawner-script need to have prefab (dependency) and have to do instantiation on it's own
 - This project also uses a simple **Factory** to take the instation-responsibility out of spawn-script, the Factory holds prefab and provides instantated objects when asked to. Better, but I had to write Factory on my own, Factory is monobehavior class, an active gameobject in hierarchy and Factory does have its dependencies
@@ -31,8 +29,6 @@
 
   - When start button is pressed, the supreme GameManager asks all Systems to Clear() and Start(). For example, now the InputManager (A system) is active and taking inputs. When all systems are active, gameplay is conducted. Now let's say player catches a hurdle, it's a gameover. Gamestate is managed by GameStateHandler (Another system) that fires an event regarding this and GameManager (the supreme) decides to shut down all other systems as game is now over.
 
-![Alt Text](/z3/mini-game.gif)
-  
 ### Standard Project
 > Managers and Systems have their distinct roles that they perform to conduct gameplay
 - **Managers**
