@@ -9,6 +9,7 @@
 - Once zenject files are copied, make a solution build and ensure all assemblies are building correctly. Check sample games and it's installers if they are loaded correctly before using
 
 ## Project1: Z1-hello-world
+> Checkout consol for the output
 - Most basic level hello world in standard unity style and with basic dependency injection
 - This helps distinguish how DI (Dependency Injection) and Binding will change things for us
 - Standard and DI's version both exists for comparison/understanding
