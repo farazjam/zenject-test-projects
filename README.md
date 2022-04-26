@@ -29,6 +29,8 @@
 
   - When start button is pressed, the supreme GameManager asks all Systems to Clear() and Start(). For example, now the InputManager (A system) is active and taking inputs. When all systems are active, gameplay is conducted. Now let's say player catches a hurdle, it's a gameover. Gamestate is managed by GameStateHandler (Another system) that fires an event regarding this and GameManager (the supreme) decides to shut down all other systems as game is now over.
 
+![Alt Text](/z3/mini-game.gif)
+  
 ### Standard Project
 > Managers and Systems have their distinct roles that they perform to conduct gameplay
 - **Managers**
