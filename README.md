@@ -14,6 +14,7 @@
 - Standard and DI's version both exists for comparison/understanding
 
 ## Project2: Z2-cube-spawner
+> Usage: Click on screen to spawn cubes
 - Demonstrates how to spawn cubes in a standard unity way vs DI's way
 - In standard way the spawner-script need to have prefab (dependency) and have to do instantiation on it's own
 - This project also uses a simple **Factory** to take the instation-responsibility out of spawn-script, the Factory holds prefab and provides instantated objects when asked to. Better, but I had to write Factory on my own, Factory is monobehavior class, an active gameobject in hierarchy and Factory does have its dependencies
