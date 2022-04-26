@@ -1,13 +1,12 @@
 # Zenject-test-projects
-Example Projects using Zenject to have more clarity and understanding. 
-As the ones that come along are already dense enough to confuse or repel newbies
+- These Example Projects using Zenject to have more clarity and understanding. As the ones that come along are already dense enough to confuse or repel newbies
+- Zenject is now [Extenject](https://github.com/Mathijs-Bakker/Extenject)
 
 ## Installation
-- Make sure your OS [allows long file names](https://gearupwindows.com/resolved-destination-path-too-long-when-moving-copying-a-file/) in Windows it's off by default. Without enabling it, some of Zenject's files may not be copied and it won't work
+- Make sure your development directory or unity project path doesn't get too long as Extenject also have some long file names that make it beyond the allowed 260 path limit in Windows OS. Nonetheless allow [Long Path Names](https://gearupwindows.com/resolved-destination-path-too-long-when-moving-copying-a-file/) to let zenject long file names work properly
 - Make an empty unity project, setup scripting backend to IL2CPP and .Net 4.0
-- Before creating any of your own scripts, try to import [Extenject from Asset store](https://assetstore.unity.com/packages/tools/utilities/extenject-dependency-injection-ioc-157735) first in an empty project and let it build it's assemblies
-- See example projects and their source code if they are loaded correctly in Visual studio. Specially check game installer(s)
-- Once all the zenject assemblies are loaded correctly and you can see the base classes working fine, you may proceed creating your own classes
+- Download latest version from [release page](https://github.com/Mathijs-Bakker/Extenject/releases) as zip, unpack it and copy-paste UnityProject/Assets/Plugins/Zenject folder into your Unity project under /Plugin preferrably
+- Once zenject files are copied, make a solution build and ensure all assemblies are building correctly. Check sample games and it's installers if they are loaded correctly before using
 
 ## Project1: Z1-hello-world
 - Most basic level hello world in standard unity style and with basic dependency injection
