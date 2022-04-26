@@ -22,7 +22,7 @@
 
 - MemoryPool also provides instantiation and pooling, provided by Zenject. With this, we don't need a factory only pool and use Spawn(), Despawn() methods that are handled by pool's OnSpawned(), OnDespawned(). Until now, it was all runtime instatiaion and no pooling
 
-## Project3: Z3-cube-min-game
+## Project3: Z3-cube-mini-game
 ### About Game
 
   - A mini game where you can move player block left/right with [A],[D]. Coin and hurdle blocks randomly spawn and fall like rain from top. Collect coins to get score and avoid hurdles. Get a significant amount of coins to clear level and if you touch hurdle, it will be level failed 
