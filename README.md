@@ -63,6 +63,17 @@
 > Out of scope: Pooling, SpawnManagement. For now runtime instantiaion/destruction is happening
   
 ### Zenject Project
+- The core project and approach is still the same, it's just that the previous project is converted into a DI project to demonstrate how it works
+- All the dependencies are now injected via CubeGameInstaller.cs
+- No System or Manager derives from MonoBehavior, they all uses IInitializable, IDisposable provided by Zenject. They are also not present as Gameobjects in hierarchy. This also implies game logic are not MonoBehaviors
+- Since Systems/Managers are not MonoBehaviors but have gamelogic, therefore Coroutine and Update could not be used. ITickable's Tick() is Zenject's alternate of Update() and [UniTask](https://github.com/Cysharp/UniTask) is a thread safe alternate of Tasks which are used here
+- The only thing that exists in hierarchy is View which is a single MonoBehavior and a GameObject
+- All kind of Blocks derive from Block.cs which is a MonoBehavior and an active participant of gameplay like collision/trigger happens on them
+- [Signals](https://github.com/modesttree/Zenject/blob/master/Documentation/Signals.md) are used instead of events, all signals are in Signals.cs
+- CoinBlock and HurdleBlock uses MonoMemoryPool provided by the framework for object pooling. Now no runtime instantation/destruction is happening
+- A Despawner (Cube with collider) is used that wasn't present in previous/standard project for object pooling purposes
+- It may feel odd for first timer on why most of the systems/managers have interfaces. The reason is that these are classes not MonoBehavior GameObjects that are already present in hierarchy and active. Zenject binds them with their classtypes on compile time and need their interfaces to inject these dependencies where ever they are needed. If someone asks for PlayerBlock it will get an exception, IPlayerBlock is the way to go
+  
   
   
   
