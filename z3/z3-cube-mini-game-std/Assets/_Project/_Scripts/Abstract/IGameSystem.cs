@@ -1,5 +1,3 @@
-//using Snake.Scripts.Data;
-
 namespace Cube.MiniGame.Systems
 {
     public interface IGameSystem

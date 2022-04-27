@@ -26,7 +26,7 @@ namespace Cube.MiniGame.Systems
 
         private void OnDisable() 
         {
-            PlayerBlock.BlockTouchedPlayer += OnBlockTouchedPlayer;
+            PlayerBlock.BlockTouchedPlayer -= OnBlockTouchedPlayer;
             GameManager.SystemStateChanged -= OnSystemStateChanged;
         }
 
