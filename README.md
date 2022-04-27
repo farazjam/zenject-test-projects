@@ -83,6 +83,7 @@
 - A typical snake game where you get the food blocks (green) and avoid hurdle blocks (red) to get score. After a certain score the level completes. If snake block (blue) touches hurdle block then level failed
 - Sumpreme Game Manager starts, stops all systems and systems work together to conduct gameplay
   
+![Alt Text](z4/z4-snake-game/Game.png)
 ### Standard Project
 
 #### Managers
@@ -124,5 +125,9 @@ These are not implemented and considered out of scope for this demo project but 
 - Red Color = Hurdle
 - Green Color = Food
 
+#### Assignment
+- Make snake tail
+- Make tunnel blocks i.e 2 blocks of different color on every level. If snake touches tunnel-entry block it moves to next level (without clearing it) as a shortcut and if it touches tunnel-exit-block it shifts back to previous level
+  
 ### Zenject Project
 - Do it as an assignment
