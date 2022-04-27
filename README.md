@@ -77,8 +77,52 @@
 - CoinBlock and HurdleBlock uses MonoMemoryPool provided by the framework for object pooling. Now no runtime instantation/destruction is happening
 - A Despawner (Cube with collider) is used that wasn't present in previous/standard project for object pooling purposes
 - It may feel odd for first timer on why most of the systems/managers have interfaces. The reason is that these are classes not MonoBehavior GameObjects that are already present in hierarchy and active. Zenject binds them with their classtypes on compile time and need their interfaces to inject these dependencies where ever they are needed. If someone asks for PlayerBlock it will get an exception, IPlayerBlock is the way to go
+
+## Project4 : Z4-snake-game
+### About Game
+- A typical snake game where you get the food blocks (green) and avoid hurdle blocks (red) to get score. After a certain score the level completes. If snake block (blue) touches hurdle block then level failed
+- Sumpreme Game Manager starts, stops all systems and systems work together to conduct gameplay
   
-  
-  
-  
-  
+### Standard Project
+
+#### Managers
+- **GameManager**: Supreme Manager that starts and stops systems. It works in conjunction with GameState Handler
+- **DataManager**: Responsible for game data & it's persistence at one point througout the game. Persists score and level no.
+- **Map**: Utility class for direction determination && coordinates validation
+
+#### Systems
+> Systems are indepedent game units that have a single responsibility.
+
+GameManager is responsible for ***Clearing***, ***Starting*** and ***Stopping*** all systems according to game state
+
+- **Input Manager**: Responsible for keyboard inputs (W.A.S.D.)
+- **Snake Movement Controller**: Moves the snake, works with Map to check if the snake can be moved on to next tile
+- **Occupancy Handler**: Keeps a record of which tiles are occupied with certain blocks. Responsible for keeping 1 block at a tile
+- **Food Manager**: Spawns/Despawns Food Blocks according to game settings. Requests score addition if block is acquired
+- **Hurdle Manager**: Spawns/Despawns Hurdle Blocks according to game settings. Requests level failure if block is touched
+
+#### Views
+> Views as in MVC are only allowed to be reflect data and not process any gamelogic. Views are fed from their respective Managers
+- **GameManagerView** : Shows Current Score, Current Level Text. Have Start and Stop Game Buttons
+- **MapView** : Scales the 3D ground object according to game settings map size to achieve dynamic map
+
+#### Entities
+Since the game consists of blocks, there are different block types. All blocks share smake interface, have coordinate and type
+- FoodBlock: Get it to increase score that leads to level completion
+- HurdleBlock: Avoid touching it or it will be a level fail. No physics used
+- SnakeBlock: Player
+
+#### Potential Improvements
+These are not implemented and considered out of scope for this demo project but are a good to have
+- Pooling: Currently objects are instantiated/destroyed on runtime which is not a best practice. 
+- Snake Body: Curreny snake is with head block only, a body will look nice
+- Both Food and Hurdle Managers try to find an empty tile before spawning a block. With max occupancy they will go into an infinite loop. Should be handled
+
+#### Misc
+- SnakeGameData: is scriptable object, all game settings can be changed from there (_SnakeGame/SnakeGameData)
+- Blue Color = Snake Head Block
+- Red Color = Hurdle
+- Green Color = Food
+
+### Zenject Project
+- Do it as an assignment
